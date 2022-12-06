@@ -1,0 +1,24 @@
+--Create a tshirts store database
+
+
+CREATE TABLE shirts (id integer PRIMARY KEY, color TEXT, price INTEGER);
+
+INSERT into shirts values (1, "red" , 3);
+INSERT into shirts values (2, "green" , 5);
+INSERT into shirts values (3, "blue" , 3);
+INSERT into shirts values (4, "orange" , 8);
+INSERT into shirts values (5, "black", 10);
+
+-display the database ordered by price
+
+SELECT * FROM shirts;
+ORDER BY price desc; 
+
+SELECT SUM(quantity) FROM shirts ORDER BY quantity asc;
+select (cost*number) from SHIRTS
+
+--what are the most 2 popular colors? 
+SELECT color, price, popularity
+FROM shirts
+order by popularity desc
+limit 2; 
