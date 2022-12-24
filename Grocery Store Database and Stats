@@ -1,24 +1,32 @@
---Create a tshirts store database
+--First I created the table
+
+create table simplistic (ID INTEGER PRIMARY KEY, Frame_size TEXT, quantity INTEGER, price INTEGER);
+
+-- Below im inserting the values into my table which include the product type,quantity,and price)
+
+INSERT INTO simplistic VALUES (1,"A2",3,20);
+INSERT INTO simplistic VALUES (2,"A3",4,30);
+INSERT INTO simplistic VALUES (3,"A4",7,50);
+INSERT INTO simplistic VALUES (4,"A5",2,100);
+INSERT INTO simplistic VALUES (5,"A6",8,60);
+
+--Below im showing the outcome where I arranged the table to order the type of products which brought the most revenue, by multiplying the quantity * price and then orderd them from the highest
 
 
-CREATE TABLE shirts (id integer PRIMARY KEY, color TEXT, price INTEGER);
 
-INSERT into shirts values (1, "red" , 3);
-INSERT into shirts values (2, "green" , 5);
-INSERT into shirts values (3, "blue" , 3);
-INSERT into shirts values (4, "orange" , 8);
-INSERT into shirts values (5, "black", 10);
+SELECT  Frame_size AS Frame_Size
+,sum(quantity) AS Quantity
+,sum(price) As Price
+,sum(price*quantity) AS TOTAL
+FROM simplistic
+GROUP BY Frame_size
+ORDER BY sum(price*quantity) desc;
 
--display the database ordered by price
+--Below is a question where I'm answering what are the 2 most popular products where they sell the most (If we have around 1000 products then I can easily figure out the top ones and also limit them to whatever number is required, for this small table will only limit it to 2)
 
-SELECT * FROM shirts;
-ORDER BY price desc; 
+SELECT* FROM simplistic
+ORDER BY quantity desc
+limit 2;
 
-SELECT SUM(quantity) FROM shirts ORDER BY quantity asc;
-select (cost*number) from SHIRTS
+-- so then I know that product A6 and A4 are the most popular.
 
---what are the most 2 popular colors? 
-SELECT color, price, popularity
-FROM shirts
-order by popularity desc
-limit 2; 
